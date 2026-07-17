@@ -20,64 +20,57 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            /* Utilisation d'une image de forêt et rivière relaxante via Unsplash */
             background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
             color: #ffffff;
-            overflow: hidden;
+            overflow-x: hidden;
             padding: 20px;
         }
 
-        /* Superposition (Overlay) animée pour simuler le flux calme de l'eau et de l'air frais */
+        /* Superposition (Overlay) animée pour simuler le flux calme de l'eau */
         body::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* Dégradé doux turquoise/bleu avec de la transparence pour laisser passer la forêt */
+            top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(135deg, rgba(0, 74, 97, 0.25), rgba(77, 208, 225, 0.15), rgba(0, 150, 136, 0.2));
             background-size: 400% 400%;
             animation: waterFlowCalm 20s ease-in-out infinite;
             z-index: 1;
         }
 
-        /* Animation fluide et très calme pour donner vie à l'ambiance aquatique/forestière */
         @keyframes waterFlowCalm {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Conteneur principal (Effet Verre Dépoli / Glassmorphism de haute qualité) */
+        /* Conteneur principal (Effet Verre Dépoli) */
         .container {
             position: relative;
             z-index: 2;
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 3.5rem 2.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3rem 2rem;
             border-radius: 28px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 650px;
             width: 100%;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             margin-bottom: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             opacity: 0.95;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
 
@@ -85,64 +78,176 @@
         .countdown-grid {
             display: flex;
             justify-content: space-around;
-            gap: 18px;
+            gap: 15px;
+            margin-bottom: 2.5rem;
         }
 
         .time-box {
             flex: 1;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 1.8rem 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem 0.5rem;
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.3s ease;
         }
 
         .time-box:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.18);
-            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
         }
 
         .number {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 700;
             display: block;
             line-height: 1;
-            margin-bottom: 0.6rem;
-            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.5rem;
         }
 
         .label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            opacity: 0.85;
-            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
 
         /* Message de fin */
         #complete-message {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: bold;
             display: none;
+            margin-bottom: 2.5rem;
             animation: breathe 3s ease-in-out infinite;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes breathe {
-            0% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.04); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.9; }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* --- ZONE DU MENU DE BOUTONS --- */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 1rem;
+        }
+
+        /* Groupes de boutons masqués/affichés par le JS */
+        #menu-before, #menu-after {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.01);
+        }
+
+        /* Boutons d'urgence (Aide) stylisés différemment */
+        .btn-panic {
+            background: rgba(239, 83, 80, 0.25);
+            border-color: rgba(239, 83, 80, 0.4);
+        }
+        .btn-panic:hover {
+            background: rgba(239, 83, 80, 0.4);
+            border-color: rgba(239, 83, 80, 0.6);
+        }
+
+        .btn-relapse {
+            background: rgba(255, 167, 38, 0.2);
+            border-color: rgba(255, 167, 38, 0.35);
+        }
+        .btn-relapse:hover {
+            background: rgba(255, 167, 38, 0.35);
+            border-color: rgba(255, 167, 38, 0.5);
+        }
+
+        /* --- FENÊTRE MODALE (POP-UP CONTENT) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: rgba(25, 35, 45, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            max-width: 550px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .close-modal:hover { opacity: 1; }
+
+        .modal-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: #4dd0e1;
+        }
+
+        .modal-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left;
+            opacity: 0.9;
+        }
+
+        .modal-text ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .modal-text li {
+            margin-bottom: 8px;
         }
 
         /* Responsive */
         @media (max-width: 520px) {
-            h1 { font-size: 1.9rem; }
-            .subtitle { font-size: 1rem; margin-bottom: 1.8rem; }
+            h1 { font-size: 1.8rem; }
             .number { font-size: 2.2rem; }
-            .countdown-grid { gap: 10px; }
-            .time-box { padding: 1.2rem 0.3rem; }
+            .countdown-grid { gap: 8px; }
+            .time-box { padding: 1rem 0.2rem; }
         }
     </style>
 </head>
@@ -150,40 +255,58 @@
 
     <div class="container">
         <h1>Le Grand Départ 🚭</h1>
-        <p class="subtitle">Libres, ensemble et à pleins poumons. Le décompte :</p>
-
-        <div id="countdown" class="countdown-grid">
-            <div class="time-box">
-                <span class="number" id="days">00</span>
-                <span class="label">Jours</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="hours">00</span>
-                <span class="label">Heures</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Min</span>
-            </div>
-            <div class="time-box">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Sec</span>
+        
+        <!-- Compte à rebours actif -->
+        <div id="countdown-section">
+            <p class="subtitle">Libres, ensemble et à pleins poumons. Le décompte :</p>
+            <div id="countdown" class="countdown-grid">
+                <div class="time-box"><span class="number" id="days">00</span><span class="label">Jours</span></div>
+                <div class="time-box"><span class="number" id="hours">00</span><span class="label">Heures</span></div>
+                <div class="time-box"><span class="number" id="minutes">00</span><span class="label">Min</span></div>
+                <div class="time-box"><span class="number" id="seconds">00</span><span class="label">Sec</span></div>
             </div>
         </div>
 
+        <!-- Message affiché le jour J -->
         <div id="complete-message">
             C'est le moment ! Respirez l'air pur de la forêt. 🌱
+        </div>
+
+        <!-- MENU DE BOUTONS DYNAMIQUE -->
+        <div class="menu-container">
+            <!-- Boutons AVANT la date d'arrêt -->
+            <div id="menu-before">
+                <button class="btn" onclick="openModal('prep')">🌱 Se préparer à arrêter</button>
+                <button class="btn" onclick="openModal('jour-j')">🚀 Le jour J : Mode d'emploi</button>
+            </div>
+
+            <!-- Boutons APRÈS la date d'arrêt -->
+            <div id="menu-after">
+                <button class="btn" onclick="openModal('astuces')">✨ Astuces pour tenir</button>
+                <button class="btn btn-panic" onclick="openModal('craquer')">🚨 HEEELP, je vais craquer !</button>
+                <button class="btn btn-relapse" onclick="openModal('craque')">❤️ Help, j'ai craqué...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FENÊTRE MODALE UNIQUE -->
+    <div id="infoModal" class="modal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" class="modal-title">Titre</h2>
+            <div id="modalText" class="modal-text">Texte</div>
         </div>
     </div>
 
     <script>
-        // --- CONFIGURATION DE VOTRE DATE ---
-        // Configuré pour le 7 août 2026 à 00h01
-        const targetDate = new Date("August 7, 2026 00:00:01").getTime();
-        // ------------------------------------
+        // --- CONFIGURATION DE VOTRE DATE D'ARRÊT ---
+        const targetDate = new Date("August 7, 2026 00:01:00").getTime();
+        // -------------------------------------------
 
-        const countdownGrid = document.getElementById("countdown");
+        const countdownSection = document.getElementById("countdown-section");
         const completeMessage = document.getElementById("complete-message");
+        const menuBefore = document.getElementById("menu-before");
+        const menuAfter = document.getElementById("menu-after");
 
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
@@ -194,12 +317,21 @@
             const now = new Date().getTime();
             const difference = targetDate - now;
 
+            // SI LA DATE EST ATTEINTE OU DÉPASSÉE
             if (difference < 0) {
-                countdownGrid.style.display = "none";
+                countdownSection.style.display = "none";
                 completeMessage.style.display = "block";
+                
+                menuBefore.style.display = "none";
+                menuAfter.style.display = "flex"; // Affiche les outils de maintien
+                
                 clearInterval(intervalId);
                 return;
             }
+
+            // AVANT LA DATE
+            menuBefore.style.display = "flex"; // Affiche la préparation
+            menuAfter.style.display = "none";
 
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -212,9 +344,54 @@
             secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
+        // TEXTES DES SECTIONS DU MENU
+        const contentData = {
+            'prep': {
+                title: "🌱 Se préparer à arrêter",
+                text: "L'union fait la force. Voici vos devoirs d'équipe d'ici le 7 août :<br><ul><li><b>Listez vos déclencheurs :</b> Le café ? Le stress ? Identifiez-les pour mieux les esquiver.</li><li><b>Nettoyez l'espace :</b> Jetez briquets, cendriers restants et paquets vides. Ne laissez rien traîner.</li><li><b>Changez vos habitudes :</b> Modifiez l'ordre de votre routine matinale.</li><li><b>Parlez-en :</b> Rappelez-vous chaque jour en groupe pourquoi vous faites ça.</li></ul>"
+            },
+            'jour-j': {
+                title: "🚀 Le jour J : Mode d'emploi",
+                text: "Aujourd'hui, le compteur passe à zéro. Pas de panique, vivez-le une heure après l'autre :<br><ul><li><b>Le premier matin :</b> Remplacez la cigarette du matin par un grand verre d'eau fraîche ou une douche tonifiante.</li><li><b>Occupez vos mains :</b> Prenez un stylo, une balle anti-stress ou cuisinez.</li><li><b>Célébrez en équipe :</b> Envoyez un message sur votre groupe dès que vous passez une étape (matinée faite, premier repas fait...).</li></ul>"
+            },
+            'astuces': {
+                title: "✨ Astuces pour tenir au quotidien",
+                text: "Le manque ne dure jamais plus de 3 à 5 minutes. Face à une envie :<br><ul><li><b>La règle des 4 D :</b> <b>D</b>ifférer (attendre 5 min), <b>D</b>écompresser (respirer), <b>D</b>ire (appeler un ami du défi), <b>D</b>ivertir (faire autre chose).</li><li><b>Buvez de l'eau :</b> Un grand verre d'eau calme instantanément une partie du signal de manque au cerveau.</li><li><b>Visualisez vos économies :</b> Mettez de côté l'argent non dépensé pour vous offrir un voyage ou un resto ensemble.</li></ul>"
+            },
+            'craquer': {
+                title: "🚨 HEEELP, je vais craquer !",
+                text: "STOP. Respire à fond. N'oublie pas que l'envie forte est comme une vague : elle monte, culmine, puis redescend tout le temps.<br><br><b>Fais ceci immédiatement :</b><br>1. Change immédiatement de pièce ou d'activité.<br>2. Appelle ou envoie un message d'urgence au groupe maintenant. Un de tes amis va te secouer ou te motiver.<br>3. Respire profondément par le nez en gonflant le ventre, puis expire très lentement par la bouche 5 fois de suite."
+            },
+            'craque': {
+                title: "❤️ Help, j'ai craqué...",
+                text: "Première règle : <b>ZÉRO CULPABILITÉ</b>. Une rechute ou une bouffée ne détruit pas tous tes efforts précédents.<br><br><b>Le plan d'action immédiat :</b><br><ul><li>Ne te dis pas 'foutu pour foutu'. Pose cette cigarette tout de suite.</li><li>Analyse le moment : qu'est-ce qui a provoqué ça ? La fatigue ? Un verre ? Apprends de cette erreur.</li><li>Relance la machine avec le groupe. Le compteur continue, ton objectif santé reste le même. On avance !</li></ul>"
+            }
+        };
+
+        // LOGIQUE DE LA FENÊTRE MODALE
+        const modal = document.getElementById("infoModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalText = document.getElementById("modalText");
+
+        function openModal(key) {
+            modalTitle.innerHTML = contentData[key].title;
+            modalText.innerHTML = contentData[key].text;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Lancement du décompte
         const intervalId = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
-
 </body>
 </html>
